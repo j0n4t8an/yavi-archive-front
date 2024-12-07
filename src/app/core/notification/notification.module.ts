@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { NotificationRoutingModule } from './notification-routing.module';
 import { NotificationListComponent } from './notification-list/notification-list.component';
-
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { NotificationListComponent } from './notification-list/notification-list
   ],
   imports: [
     CommonModule,
-    NotificationRoutingModule
+    NotificationRoutingModule,
+    TableModule
   ]
 })
 export class NotificationModule { }

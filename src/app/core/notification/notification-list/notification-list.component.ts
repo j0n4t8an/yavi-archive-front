@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './notification-list.component.scss'
 })
 export class NotificationListComponent {
+data: any;
+
 
 }

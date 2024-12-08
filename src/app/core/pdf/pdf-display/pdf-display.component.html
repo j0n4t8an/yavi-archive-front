@@ -1,1 +1,23 @@
-<p>pdf-display works!</p>
+<div class="pdf-viewer-container">
+    <!-- Nombre del PDF -->
+    <h3>{{ pdfName }}</h3>
+  
+    <!-- Visor del PDF -->
+    <ng2-pdf-viewer
+      [src]="pdfSrc"
+      [render-text]="true"
+      style="display: block; width: 100%; height: 500px;"
+    ></ng2-pdf-viewer>
+  
+    <!-- Botón para comentarios -->
+    <div class="comments-section">
+      <button
+        pButton
+        type="button"
+        label="Abrir sección de comentarios"
+        icon="pi pi-comments"
+        (click)="openComments()"
+      ></button>
+    </div>
+  </div>
+  

@@ -1,6 +1,7 @@
 import { UserService } from '../../services/users-http.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class LoginComponent {
   protected form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.buildForm();
   }
 
@@ -28,20 +29,24 @@ export class LoginComponent {
       console.log('Formulario inválido');
       return;
     }
-
-    // Obtenemos los valores del formulario
     const { email, password } = this.form.value;
-
+  
     this.userService.login(email, password).subscribe(
       (user) => {
         console.log('Login exitoso', user);
-        // Aquí puedes guardar el token o hacer la redirección
+  
+        // Guardar el token en el almacenamiento local si es necesario
+        localStorage.setItem('token', user.token);
+  
+        // Redirigir a la página principal o a un dashboard
+        this.router.navigate(['/core/library/library-list']);
       },
       (error) => {
         console.error('Error de login', error);
       }
     );
   }
+  
 
 
 

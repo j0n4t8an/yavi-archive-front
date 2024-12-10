@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/users-http.service';
+import { Router } from '@angular/router';
+import { CreateUserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -10,27 +13,19 @@ export class RegisterComponent {
 
   protected form!: FormGroup;
   
-  constructor(private formBuilder: FormBuilder) {
-    this.buildForm();
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
+    this.form = this.buildForm();
   }
   
-  careers = [
-    { label: 'Ingeniería en Sistemas', value: 'sistemas' },
-    { label: 'Ingeniería Civil', value: 'civil' },
-    { label: 'Medicina', value: 'medicina' },
-    { label: 'Administración', value: 'administracion' },
-    { label: 'Derecho', value: 'derecho' }
-  ];
-  selectedCareers: string[] = [];
-
-  buildForm(): void {
-    this.form = this.formBuilder.group({
+  buildForm(): FormGroup {
+    return this.formBuilder.group({
       firstName:[null,[Validators.required]],
       lastName: [null,[Validators.required]],
       email: [null, [Validators.required, Validators.email]], 
       password: [null, [Validators.required,Validators.minLength(8),this.passwordValidator]],
-      carrer:[],
-      userType: []
+      userTypeId: ['5ee824ae-4ce3-4115-88e0-4926c3d0ef07'],
+      careerId:['37972db7-c763-413c-a434-74bb98dbde18'],
+      
     });
   }
 
@@ -47,6 +42,25 @@ export class RegisterComponent {
       return { passwordStrength: true };
     }
   }
+
+  userCreate() {
+    if (this.form.valid) {
+      const createUser: CreateUserModel = this.form.value;
+      this.userService.userCreate(createUser).subscribe(
+        response => {
+          console.log(response);
+          this.router.navigate(['/core/library/library-list']);
+        },
+        error => {
+          alert('Error al crear el usuario');
+          console.error('Error al crear el usuario:', error);
+        }
+      );
+    } else {
+      alert('Por favor, complete el formulario correctamente');
+    }
+  }
+
   get firstNameField(): AbstractControl {
     return this.form.controls['firstName'];
   }
@@ -63,11 +77,11 @@ export class RegisterComponent {
     return this.form.controls['password'];
   }
   
-  get carrerField(): AbstractControl {
-    return this.form.controls['carrer'];
+  get careerField(): AbstractControl {
+    return this.form.controls['carrerId'];
   }
 
   get userTypeField(): AbstractControl {
-    return this.form.controls['userType'];
+    return this.form.controls['userTypeId'];
   }
 }

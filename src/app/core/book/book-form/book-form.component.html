@@ -1,1 +1,57 @@
-<p>book-form works!</p>
+<div class="form-page-container">
+    <div class="image-section">
+      <img src="https://yavirac.edu.ec/wp-content/uploads/2024/05/desarrollo-software-v2.jpg" alt="Biblioteca Virtual" class="library-image" />
+    </div>
+    <div class="form-section">
+      <div class="form-content">
+        <h2>Formulario de Libro</h2>
+        <form [formGroup]="form" (ngSubmit)="addBook()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="title">Título</label>
+              <input id="title" type="text" formControlName="title" pInputText />
+              <p *ngIf="titleField.invalid && titleField.touched" class="p-error">El título es obligatorio y debe tener al menos 3 caracteres.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="author">Autor</label>
+              <input id="author" type="text" formControlName="author" pInputText />
+              <p *ngIf="authorIdField.invalid && authorIdField.touched" class="p-error">El autor es obligatorio.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="year">Año</label>
+              <input id="year" type="number" formControlName="year" pInputText />
+              <p *ngIf="yearPublicationField.invalid && yearPublicationField.touched" class="p-error">El año es obligatorio y debe estar entre 1000 y 2100.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="editorial">Editorial</label>
+              <input id="editorial" type="text" formControlName="editorial" pInputText />
+              <p *ngIf="editorialField.invalid && editorialField.touched" class="p-error">La editorial es obligatoria.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="category">Categoría</label>
+              <!-- <p-dropdown
+                id="category"
+                formControlName="category"
+                [options]="categories"
+                placeholder="Selecciona una categoría"
+              ></p-dropdown> -->
+              <p *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">La categoría es obligatoria.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="description">Descripción</label>
+              <textarea id="description" formControlName="description" pInputTextarea></textarea>
+              <p *ngIf="descriptionField.invalid && descriptionField.touched" class="p-error">La descripción es obligatoria y debe tener al menos 10 caracteres.</p>
+            </div>
+  
+            <button pButton type="submit" label="Añadir Libro" [disabled]="form.invalid" class="submit-button"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

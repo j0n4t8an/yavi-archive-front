@@ -1,1 +1,28 @@
-<p>notification-list works!</p>
+<p-table [value]="data" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>User_Id</th>
+            <th>Tipo</th>
+            <th>Mensaje</th>
+            <th>Fecha de Envío</th>
+            <th>Leído</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-notification>
+        <tr>
+            <td>{{ notification.id }}</td>
+            <td>{{ notification.user_id }}</td>
+            <td>{{ notification.type_of_notification }}</td>
+            <td>{{ notification.message }}</td>
+            <td>{{ notification.shipping_date | date }}</td>
+            <td>{{ notification.read ? 'Sí' : 'No' }}</td>
+            <!-- <td>
+                <button (click)="editNotification(notification)">Editar</button>
+                <button (click)="deleteNotification(notification.id)">Eliminar</button>
+                <button (click)="sendWelcomeMessage('user-id-aqui')">Enviar Mensaje de Bienvenida</button>
+            </td> -->
+        </tr>
+    </ng-template>
+</p-table>

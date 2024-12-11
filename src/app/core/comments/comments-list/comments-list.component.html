@@ -1,1 +1,28 @@
-<p>comments-list works!</p>
+<div class="card">
+    <p-table [value]="comment" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Autor</th>
+                <th>Comentario</th>
+                <th>Fecha</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.author }}</td>
+                <td>{{ product.comment }}</td>
+                <td>{{ product.date }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-listbox [options]="comments" optionLabel="author">
+    <ng-template let-comment pTemplate="item">
+        <div class="comment-item">
+            <div class="author">{{ comment.author }}</div>
+            <div class="content">{{ comment.text }}</div>
+            <div class="timestamp">{{ comment.date }}</div>
+        </div>
+    </ng-template>
+</p-listbox>

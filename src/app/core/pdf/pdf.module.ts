@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PdfRoutingModule } from './pdf-routing.module';
 import { PdfDisplayComponent } from './pdf-display/pdf-display.component';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PdfDisplayComponent } from './pdf-display/pdf-display.component';
   ],
   imports: [
     CommonModule,
-    PdfRoutingModule
+    PdfRoutingModule,
+    ButtonModule
   ]
 })
 export class PdfModule { }

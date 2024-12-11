@@ -1,1 +1,26 @@
-<p>pdf-display works!</p>
+<div style=" display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+max-width: 800px;
+margin: auto;">
+   
+    <div class="pdf-title">
+      <h3>{{ pdfTitle }}</h3>
+    </div>
+  
+  
+    <div style=" width: 100%;
+    height: 500px;
+    margin-bottom: 10px;">
+      <iframe 
+        [src]="sanitizer.bypassSecurityTrustResourceUrl(pdfUrl)" 
+        style=" width: 100%;
+        height: 100%;
+        border: none;">
+      </iframe>
+    </div>
+  
+  
+    <p-button label="Comentarios" [raised]="true" severity="warning" />
+  </div>

@@ -18,4 +18,8 @@ export class UserService {
   userCreate(createUser: CreateUserModel): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`,createUser);
   }
+
+  findAllCarerrs():Observable<any> {
+    return this.http.get(`${this.apiUrl}/career`);
+  }
 }

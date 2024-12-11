@@ -5,5 +5,9 @@ export interface CreateUserModel{
     password: string;
     userTypeId: any;
     careerId:any;
-    
+}
+
+export interface CareerModel{
+    id:string;
+    description:string;
 }

@@ -1,0 +1,24 @@
+<p-menubar>
+    <!-- Logo a la izquierda -->
+    <ng-template pTemplate="start">
+      <img src="/assets/YAVI ARCHIVE.png" alt="Logo" class="navbar-logo" />
+    </ng-template>
+  
+    <!-- Botones a la derecha -->
+    <ng-template pTemplate="end">
+      <button pButton label="Login"
+            [rounded]="true" 
+            [text]="true" 
+            severity="info"
+            class="btn-login"
+            icon="pi pi-sign-in" 
+            [routerLink]="'/auth/login'"></button>
+      <button pButton label="Registro"
+            [rounded]="true" 
+            [text]="true" 
+            severity="info"
+            class="btn-register" 
+            icon="pi pi-user-plus" 
+            [routerLink]="'/auth/register'"></button>
+    </ng-template>
+  </p-menubar>

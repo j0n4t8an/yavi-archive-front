@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/users-http.service';
 import { Router } from '@angular/router';
-import { CreateUserModel } from '../../models/user.model';
+import { CareerModel, CreateUserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +12,14 @@ import { CreateUserModel } from '../../models/user.model';
 export class RegisterComponent {
 
   protected form!: FormGroup;
+  protected career: [] = [];
   
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router) {
     this.form = this.buildForm();
+    this.findAllCareers();
   }
   
   buildForm(): FormGroup {
@@ -24,8 +29,7 @@ export class RegisterComponent {
       email: [null, [Validators.required, Validators.email]], 
       password: [null, [Validators.required,Validators.minLength(8),this.passwordValidator]],
       userTypeId: ['5ee824ae-4ce3-4115-88e0-4926c3d0ef07'],
-      careerId:['37972db7-c763-413c-a434-74bb98dbde18'],
-      
+      careerId:[null, [Validators.required]],
     });
   }
 
@@ -48,8 +52,9 @@ export class RegisterComponent {
       const createUser: CreateUserModel = this.form.value;
       this.userService.userCreate(createUser).subscribe(
         response => {
+          alert('Usuario creado exitosamente, por favor inicie sesión');
           console.log(response);
-          this.router.navigate(['/core/library/library-list']);
+          this.router.navigate(['/auth/login']);
         },
         error => {
           alert('Error al crear el usuario');
@@ -59,6 +64,21 @@ export class RegisterComponent {
     } else {
       alert('Por favor, complete el formulario correctamente');
     }
+  }
+
+  findAllCareers() {
+    this.userService.findAllCarerrs().subscribe(
+      (response) => {
+        this.career = response.map((career:CareerModel) => ({
+          label: career.description,
+          value: career.id
+        }));
+        console.log('Opciones formateadas para el dropdown:', this.career);
+      },
+      (error) => {
+        console.error('Error al obtener las carreras:', error);
+      }
+    );
   }
 
   get firstNameField(): AbstractControl {

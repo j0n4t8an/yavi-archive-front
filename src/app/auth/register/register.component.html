@@ -71,14 +71,15 @@
               </small>
             </div>
             
-            <!-- <div class="p-field">
+            <div class="p-field">
               <label for="career">Seleccione su carrera:</label>
               <p-dropdown 
-                [options]="careers" 
+                [options]="career" 
                 placeholder="Seleccione una carrera" 
-                name="career">
+                name="career"
+                formControlName="careerId"> 
               </p-dropdown>
-            </div> -->
+            </div>
             <button pButton label="Registrarse" type="submit"></button>
           </div>
         </form>

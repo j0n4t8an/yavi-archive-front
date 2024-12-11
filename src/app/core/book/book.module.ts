@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BookService } from '../../services/books-http.service';
+import { NavbarModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { BookService } from '../../services/books-http.service';
     InputNumberModule,
     InputTextModule,
     InputTextareaModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavbarModule
   ],
   providers: [BookService]
 })

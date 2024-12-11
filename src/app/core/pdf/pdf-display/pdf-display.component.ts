@@ -8,12 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class PdfDisplayComponent {
   pdfTitle: string = 'Geografía universal';
-  pdfUrl: string = '/assets/Geografía universal .pdf'; // Ruta del PDF en tu proyecto
+  pdfUrl: string = '/assets/Geografía universal .pdf'; 
 
   constructor(public sanitizer: DomSanitizer) {}
 
   openComments() {
-    // Acción al hacer clic en el botón de comentarios
+ 
     alert('Sección de comentarios abierta');
   }
 }

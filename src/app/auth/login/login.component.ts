@@ -18,9 +18,7 @@ export class LoginComponent {
   buildForm(): void {
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]], 
-      password: [null, [
-        Validators.required, 
-      ]]
+      password: [null, [Validators.required,]]
     });
   }
   
@@ -35,10 +33,8 @@ export class LoginComponent {
       (user) => {
         console.log('Login exitoso', user);
   
-        // Guardar el token en el almacenamiento local si es necesario
-        localStorage.setItem('token', user.token);
+        sessionStorage.setItem('token', user.token);
   
-        // Redirigir a la página principal o a un dashboard
         this.router.navigate(['/core/library/library-list']);
       },
       (error) => {
@@ -46,9 +42,6 @@ export class LoginComponent {
       }
     );
   }
-  
-
-
 
   get emailField(): AbstractControl {
     return this.form.controls['email'];

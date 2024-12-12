@@ -16,16 +16,16 @@
               <p *ngIf="titleField.invalid && titleField.touched" class="p-error">El título es obligatorio y debe tener al menos 3 caracteres.</p>
             </div>
   
-            <div class="p-field">
+            <!-- <div class="p-field">
               <label for="author">Autor</label>
-              <input id="author" type="text" formControlName="author" pInputText />
+              <input id="author" type="text" formControlName="authorId" pInputText />
               <p *ngIf="authorIdField.invalid && authorIdField.touched" class="p-error">El autor es obligatorio.</p>
-            </div>
+            </div> -->
   
             <div class="p-field">
               <label for="year">Año</label>
-              <input id="year" type="number" formControlName="year" pInputText />
-              <p *ngIf="yearPublicationField.invalid && yearPublicationField.touched" class="p-error">El año es obligatorio y debe estar entre 1000 y 2100.</p>
+              <input id="year" type="text" formControlName="year_publication" pInputText />
+              <p *ngIf="year_publicationField.invalid && year_publicationField.touched" class="p-error">El año es obligatorio y debe estar entre 1000 y 2100.</p>
             </div>
   
             <div class="p-field">
@@ -36,12 +36,12 @@
   
             <div class="p-field">
               <label for="category">Categoría</label>
-              <!-- <p-dropdown
+              <p-dropdown
                 id="category"
-                formControlName="category"
+                formControlName="categoriesId"
                 [options]="categories"
                 placeholder="Selecciona una categoría"
-              ></p-dropdown> -->
+              ></p-dropdown>
               <p *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">La categoría es obligatoria.</p>
             </div>
   

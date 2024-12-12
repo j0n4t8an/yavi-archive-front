@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { BookService } from '../../../services/books-http.service';
-import { CreateBookModel } from '../../../models/book.model';
+import { CategoriesModel, CreateBookModel } from '../../../models/book.model';
 
 @Component({
   selector: 'app-book-form',
@@ -13,6 +13,7 @@ import { CreateBookModel } from '../../../models/book.model';
 })
 export class BookFormComponent {
   protected form!: FormGroup;
+  protected categories: [] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,15 +22,16 @@ export class BookFormComponent {
     private router: Router
   ) {
     this.form = this.buildForm();
+    this.findAllCategories();
   }
 
   buildForm(): FormGroup {
     return this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(3)]],
-      yearPublication: [null, [Validators.required, Validators.min(1000), Validators.max(2100)]],
+      year_publication: [null, [Validators.required, Validators.min(1000), Validators.max(2100)]],
       editorial: [null, [Validators.required]],
       description: [null, [Validators.required, Validators.minLength(10)]],
-      authorId: [null, [Validators.required]],
+      authorId: ["5410e4ad-a326-45f2-b92a-5a9ad0595b5e"],
       categoriesId: [null, [Validators.required]],
     });
   }
@@ -37,7 +39,7 @@ export class BookFormComponent {
   // Método para agregar un nuevo libro
   addBook() {
     if (this.form.valid) {
-
+      console.log(this.form.value)
       const createBook:CreateBookModel = this.form.value;
       this.bookService.addBook(createBook).subscribe(
         response => {
@@ -71,13 +73,28 @@ export class BookFormComponent {
     });
   }
 
+  findAllCategories() {
+    this.bookService.getCategories().subscribe(
+      (response) => {
+        this.categories = response.map((categories:CategoriesModel) => ({
+          label: categories.name,
+          value: categories.id
+        }));
+        console.log('Opciones formateadas para el dropdown:', this.categories);
+      },
+      (error) => {
+        console.error('Error al obtener las categorias;', error);
+      }
+    );
+  }
+
   // Getters para validaciones
   get titleField(): AbstractControl {
     return this.form.controls['title'];
   }
 
-  get yearPublicationField(): AbstractControl {
-    return this.form.controls['yearPublication'];
+  get year_publicationField(): AbstractControl {
+    return this.form.controls['year_publication'];
   }
   
   get editorialField(): AbstractControl {

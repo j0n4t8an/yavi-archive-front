@@ -5,6 +5,7 @@ import { CommentsRoutingModule } from './comments-routing.module';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
+import { NavbarModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ListboxModule } from 'primeng/listbox';
     CommonModule,
     CommentsRoutingModule,
     TableModule,
-    ListboxModule
-  ]
+    ListboxModule,
+    NavbarModule
+]
 })
 export class CommentsModule { }

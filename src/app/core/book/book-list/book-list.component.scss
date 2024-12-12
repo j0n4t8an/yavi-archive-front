@@ -1,0 +1,63 @@
+
+p-table {
+    --surface-a: #f9f9f9; /* Fondo general */
+    --surface-b: #da1717; /* Fondo de filas */
+    --text-color: #333; /* Color del texto */
+    --highlight-color: #be340a; /* Color de realce para hover */
+    --header-color: #3a3a3a; /* Color del texto del encabezado */
+    --header-background: #be340a; /* Fondo del encabezado */
+    --action-buttons: #fff; /* Color de íconos en botones */
+  }
+  
+  /* Estilo para el encabezado */
+  p-table thead th {
+    background-color: var(--header-background);
+    color: var(--header-color);
+    text-align: left;
+    padding: 1rem;
+  }
+  
+  /* Estilo para las filas */
+  p-table tbody tr {
+    background-color: var(--surface-b);
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover: Cambia el color al pasar el mouse */
+  p-table tbody tr:hover {
+    background-color: var(--highlight-color);
+    color: #fff; /* Cambia el texto a blanco para contraste */
+  }
+  
+  /* Estilo para los botones de acciones */
+  p-table tbody tr td button {
+    margin-right: 0.5rem;
+    border-radius: 50%;
+  }
+  
+  .p-button-rounded.p-button-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+  
+  .p-button-rounded.p-button-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .p-button-rounded.p-button-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .p-button-rounded:hover {
+    filter: brightness(1.1); /* Efecto al pasar el mouse por los botones */
+  }
+  
+  /* Detalles de diálogo */
+  p-dialog .p-dialog-header {
+    background-color: var(--highlight-color);
+    color: var(--action-buttons);
+  }
+  

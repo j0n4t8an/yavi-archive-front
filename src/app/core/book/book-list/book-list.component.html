@@ -1,1 +1,88 @@
-<p>book-list works!</p>
+<h1>Lista de Libros</h1>
+
+<!-- Tabla de libros -->
+<p-table [value]="books" [paginator]="true" [rows]="5" selectionMode="single" [(selection)]="selectedBook">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Editorial</th>
+      <th>Categoría</th>
+      <th>Año</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-book>
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.editorial }}</td>
+      <td>{{ book.category }}</td>
+      <td>{{ book.year }}</td>
+      <td>
+        <!-- Botón de detalles -->
+        <button pButton type="button" icon="pi pi-eye" class="p-button-rounded p-button-info" (click)="viewDetails(book)"></button>
+        
+        <!-- Botón de editar -->
+        <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editBook(book)"></button>
+        
+        <!-- Botón de eliminar  -->
+        <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteBook(book)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Cuadro de diálogo con detalles del libro -->
+<p-dialog header="Detalles del Libro" [(visible)]="dialogVisible" [modal]="true" [closable]="true" [resizable]="false">
+  <div *ngIf="selectedBook">
+    <p><strong>Título:</strong> {{ selectedBook.title }}</p>
+    <p><strong>Autor:</strong> {{ selectedBook.author }}</p>
+    <p><strong>Editorial:</strong> {{ selectedBook.editorial }}</p>
+    <p><strong>Categoría:</strong> {{ selectedBook.category }}</p>
+    <p><strong>Año:</strong> {{ selectedBook.year }}</p>
+    <p><strong>Descripción:</strong> {{ selectedBook.description }}</p>
+  </div>
+</p-dialog>
+
+<!-- Cuadro de diálogo para editar libro -->
+<p-dialog header="Editar Libro" [(visible)]="editDialogVisible" [modal]="true" [closable]="true" [resizable]="false">
+  <div *ngIf="selectedBook">
+    <!-- Formulario de edición -->
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="title">Título</label>
+        <input id="title" pInputText [(ngModel)]="selectedBook.title" />
+      </div>
+
+      <div class="p-field">
+        <label for="author">Autor</label>
+        <input id="author" pInputText [(ngModel)]="selectedBook.author" />
+      </div>
+
+      <div class="p-field">
+        <label for="editorial">Editorial</label>
+        <input id="editorial" pInputText [(ngModel)]="selectedBook.editorial" />
+      </div>
+
+      <div class="p-field">
+        <label for="category">Categoría</label>
+        <input id="category" pInputText [(ngModel)]="selectedBook.category" />
+      </div>
+
+      <div class="p-field">
+        <label for="year">Año</label>
+        <input id="year" type="number" pInputText [(ngModel)]="selectedBook.year" />
+      </div>
+
+      <div class="p-field">
+        <label for="description">Descripción</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="selectedBook.description"></textarea>
+      </div>
+
+      <!-- Botón para guardar cambios -->
+      <button pButton type="button" label="Guardar" class="p-button-rounded p-button-success" (click)="saveChanges()"></button>
+    </div>
+  </div>
+</p-dialog>

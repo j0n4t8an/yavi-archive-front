@@ -31,7 +31,7 @@ export class NotificationListComponent implements OnInit {
     this.notificationService.deleteNotification(id).subscribe({
       next: () => {
         console.log('Notificación eliminada');
-        this.loadNotifications(); // Recarga las notificaciones
+      // Recarga las notificaciones
       },
       error: (err) => {
         console.error('Error deleting notification:', err);

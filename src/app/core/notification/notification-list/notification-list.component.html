@@ -19,9 +19,8 @@
             <td>{{ notification.shipping_date | date }}</td>
             <td>{{ notification.read ? 'Sí' : 'No' }}</td>
             <td>
-                
                 <button (click)="deleteNotification(notification.id)">Eliminar</button>
-                <button (click)="sendWelcomeMessage('user-id-aqui')">Enviar Mensaje de Bienvenida</button>
+                <button (click)="sendWelcomeMessage('user-id-aqui')">Renviar Mensaje</button>
             </td> 
         </tr>
     </ng-template>

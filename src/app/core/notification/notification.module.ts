@@ -6,13 +6,11 @@ import { NotificationListComponent } from './notification-list/notification-list
 import { TableModule } from 'primeng/table';
 
 @NgModule({
-  declarations: [
-    NotificationListComponent
-  ],
+  declarations: [NotificationListComponent],
   imports: [
     CommonModule,
     NotificationRoutingModule,
     TableModule
-  ]
+  ],
 })
-export class NotificationModule { }
+export class NotificationModule {}

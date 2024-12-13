@@ -1,0 +1,27 @@
+:host ::ng-deep .p-menubar{
+    background-color: #ffca8d;
+    /* #c1daff */
+}
+.navbar-logo {
+    height: 70px;
+  }
+  
+  .btn-login, .btn-register {
+    margin-left: 10px;
+  }
+  
+  .btn-login {
+    color: rgb(15, 45, 143);
+  }
+  
+  .btn-register {
+    color: rgb(15, 45, 143);
+  }
+
+  .btn-login:hover, .btn-register:hover {
+    color: rgb(100, 137, 255);
+  }
+
+  
+  
+  

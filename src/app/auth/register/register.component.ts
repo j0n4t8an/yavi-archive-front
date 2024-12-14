@@ -53,7 +53,6 @@ export class RegisterComponent {
       this.userService.userCreate(createUser).subscribe(
         response => {
           alert('Usuario creado exitosamente, por favor inicie sesión');
-          console.log(response);
           this.router.navigate(['/auth/login']);
         },
         error => {

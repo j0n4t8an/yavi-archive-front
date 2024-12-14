@@ -1,1 +1,45 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+
+<div class="home-container">
+  <div class="card-container">
+    <!-- Primera fila -->
+     <br>
+    <div class="row">
+      <p-card class="card first-row-card" (click)="navigateToBook(books[0].url)">
+        <ng-template pTemplate="header">
+          <img src="https://th.bing.com/th/id/OIP.9SWpbmD2HwdaQNMewJQqiAHaJm?rs=1&pid=ImgDetMain" alt="Book 1" />
+        </ng-template>
+        <div class="content">
+          <h2>Book Title 1</h2>
+          <p>Short description about book 1.</p>
+        </div>
+      </p-card>
+
+      <div class="spacer"></div>
+
+      <p-card class="card first-row-card" (click)="navigateToBook(books[1].url)">
+        <ng-template pTemplate="header">
+          <img src="https://th.bing.com/th/id/R.dfade8053d02acd15826288da564eed4?rik=SrOEQNoPen6j%2fQ&riu=http%3a%2f%2fwww.agapea.com%2fportada-i6n8292871.jpg&ehk=hW7YCEFGtq31e9uabW6LtEiYzrzenvYjAHScY3hp%2bIg%3d&risl=&pid=ImgRaw&r=0" alt="Book 2" />
+        </ng-template>
+        <div class="content">
+          <h2>Book Title 2</h2>
+          <p>Short description about book 2.</p>
+        </div>
+      </p-card>
+    </div>
+  
+    <!-- Segunda fila dinámica de libros -->
+    <div class="row" *ngFor="let row of groupedBooks">
+      <p-card class="card" *ngFor="let book of row" (click)="navigateToBook(book.url)">
+        <ng-template pTemplate="header">
+          <img [src]="book.image" [alt]="book.title" />
+        </ng-template>
+        <div class="content">
+          <h2>{{ book.title }}</h2>
+          <p>{{ book.description }}</p>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>
+<app-navbar></app-navbar>

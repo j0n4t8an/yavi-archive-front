@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
+import { CommonModule } from './common/common.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { provideHttpClient } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule, 
-    AppRoutingModule, 
+    AppRoutingModule,
+    CommonModule 
   ],
   providers: [
     provideHttpClient(),

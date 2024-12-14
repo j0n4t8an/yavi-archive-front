@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class PdfDisplayComponent {
   pdfTitle: string = 'Geografía universal';
-  pdfUrl: string = '/assets/Geografía universal .pdf'; 
+  pdfUrl: string = '/assets/pdfs/Geografía universal .pdf'; 
 
   constructor(public sanitizer: DomSanitizer) {}
 

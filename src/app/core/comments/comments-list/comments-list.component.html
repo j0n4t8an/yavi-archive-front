@@ -1,29 +1,44 @@
-<app-navbar></app-navbar>
-<div class="card">
-    <p-table [value]="comment" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Autor</th>
-                <th>Comentario</th>
-                <th>Fecha</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{ product.author }}</td>
-                <td>{{ product.comment }}</td>
-                <td>{{ product.date }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+<!-- <app-navbar></app-navbar>
+<div class="home-container">
+<div class="container">
+    <div class="main">
+        <p-table class="col-11" 
+            [tableStyle]="{ 'min-width': '80rem'}" 
+            styleClass="p-datatable-striped"
+            [value]="filteredStudents" 
+            [paginator]="true" 
+            [rows]="5">
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    <h2 class="table-title">Lista de Estudiantes</h2>
+                    <div class="search-bar">
+                        <input type="text" 
+                            pInputText placeholder="Buscar..." 
+                            [(ngModel)]="searchTerm"
+                            (ngModelChange)="filterStudent()"/>
+                        <i class="pi pi-search search-icon"></i>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:33%">Nombres</th>
+                    <th style="width:33%">Apellidos</th>
+                    <th style="width:34%">Email</th>
+                    <th style="width:33%">Acciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-student>
+                <tr>
+                    <td>{{student.firstName}}</td>
+                    <td>{{student.lastName}}</td>
+                    <td>{{student.email}}</td>
+                    <td><p-button label="Eliminar" severity="danger" size="small" icon="pi pi-trash"
+                        (onClick)="deleteStudent(student.id)"/></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
-
-<p-listbox [options]="comments" optionLabel="author">
-    <ng-template let-comment pTemplate="item">
-        <div class="comment-item">
-            <div class="author">{{ comment.author }}</div>
-            <div class="content">{{ comment.text }}</div>
-            <div class="timestamp">{{ comment.date }}</div>
-        </div>
-    </ng-template>
-</p-listbox>
+</div>
+ -->

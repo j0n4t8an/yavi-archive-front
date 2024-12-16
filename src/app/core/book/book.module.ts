@@ -16,6 +16,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BookService } from '../../services/books-http.service';
 import { NavbarModule } from '../../shared/shared.module';
+import { CardModule } from 'primeng/card';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { NavbarModule } from '../../shared/shared.module';
     InputTextModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    NavbarModule
+    NavbarModule,
+    CardModule,
+    FileUploadModule,
+    ToastModule
   ],
   providers: [BookService]
 })

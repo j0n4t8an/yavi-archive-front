@@ -1,63 +1,80 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw;
+  
+  background: url('/assets/fondo.jpeg') no-repeat center center;
+  //background: url('/assets/YAVIRAC1.jpg') no-repeat center center;
+  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+  background-attachment: fixed; /* Fija la imagen al hacer scroll */
 
-p-table {
-    --surface-a: #f9f9f9; /* Fondo general */
-    --surface-b: #da1717; /* Fondo de filas */
-    --text-color: #333; /* Color del texto */
-    --highlight-color: #be340a; /* Color de realce para hover */
-    --header-color: #3a3a3a; /* Color del texto del encabezado */
-    --header-background: #be340a; /* Fondo del encabezado */
-    --action-buttons: #fff; /* Color de íconos en botones */
-  }
+  position: fixed; /* Posición normal para el contenedor */
+  top: 0;
+  left: 0;
   
-  /* Estilo para el encabezado */
-  p-table thead th {
-    background-color: var(--header-background);
-    color: var(--header-color);
-    text-align: left;
-    padding: 1rem;
+  z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
+}
+  .container {
+    display: flex;
+    padding: 120px 0; 
   }
-  
-  /* Estilo para las filas */
-  p-table tbody tr {
-    background-color: var(--surface-b);
-    color: var(--text-color);
-    transition: background-color 0.3s ease;
+
+  :host ::ng-deep .p-datatable {
+    border: 4px solid  #000783ee; 
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #36d14e;
   }
-  
-  /* Hover: Cambia el color al pasar el mouse */
-  p-table tbody tr:hover {
-    background-color: var(--highlight-color);
-    color: #fff; /* Cambia el texto a blanco para contraste */
+
+  :host ::ng-deep .p-datatable-thead {
+    > tr {
+      > th {
+        background-color: #000783ee; 
+        color: white; 
+      }
+    }
   }
-  
-  /* Estilo para los botones de acciones */
-  p-table tbody tr td button {
-    margin-right: 0.5rem;
-    border-radius: 50%;
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  
-  .p-button-rounded.p-button-info {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
+
+  .table-title {
+    margin: 0;
   }
-  
-  .p-button-rounded.p-button-success {
-    background-color: #28a745;
-    border-color: #28a745;
+
+  .search-bar {
+    display: flex;
+    align-items: center;
   }
-  
-  .p-button-rounded.p-button-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
+
+  .search-icon {
+    margin-left: 5px;
+    cursor: pointer;
   }
-  
-  .p-button-rounded:hover {
-    filter: brightness(1.1); /* Efecto al pasar el mouse por los botones */
+
+  .p-datatable {
+    border: 4px solid #000783ee;
+    border-radius: 10px;
+    overflow: hidden;
   }
-  
-  /* Detalles de diálogo */
-  p-dialog .p-dialog-header {
-    background-color: var(--highlight-color);
-    color: var(--action-buttons);
+
+  .p-datatable-thead > tr > th {
+    background-color: #000783ee;
+    color: white;
   }
-  
+
+  .p-datatable-tbody tr:hover {
+    background-color: #b9b9b9;
+    cursor: pointer;
+  }
+
+  .p-datatable-tbody tr:hover td {
+    color: #000783ee;
+  }
+
+

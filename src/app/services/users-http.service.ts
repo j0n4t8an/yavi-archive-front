@@ -22,4 +22,12 @@ export class UserService {
   findAllCarerrs():Observable<any> {
     return this.http.get(`${this.apiUrl}/career`);
   }
+
+  getStudents(){
+    return this.http.get(`${this.apiUrl}/users`);
+  }
+
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/users/${id}`);
+  }
 }

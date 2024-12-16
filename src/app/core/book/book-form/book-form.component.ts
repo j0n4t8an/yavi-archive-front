@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { BookService } from '../../../services/books-http.service';
 import { CategoriesModel, CreateBookModel } from '../../../models/book.model';
+import { FileUploadEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-book-form',
@@ -14,6 +15,7 @@ import { CategoriesModel, CreateBookModel } from '../../../models/book.model';
 export class BookFormComponent {
   protected form!: FormGroup;
   protected categories: [] = [];
+  protected uploadedFiles: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,12 +31,13 @@ export class BookFormComponent {
     return this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(3)]],
       year_publication: [null, [Validators.required, Validators.min(1000), Validators.max(2100)]],
+      file_path: [null, Validators.required],
       editorial: [null, [Validators.required]],
       description: [null, [Validators.required, Validators.minLength(10)]],
-      authorId: ["5410e4ad-a326-45f2-b92a-5a9ad0595b5e"],
+      author: [null, [Validators.required]],
       categoriesId: [null, [Validators.required]],
-    });
-  }
+      });
+    }
 
   // Método para agregar un nuevo libro
   addBook() {
@@ -88,6 +91,14 @@ export class BookFormComponent {
     );
   }
 
+  onUpload(event:FileUploadEvent) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
+
   // Getters para validaciones
   get titleField(): AbstractControl {
     return this.form.controls['title'];
@@ -99,6 +110,14 @@ export class BookFormComponent {
   
   get editorialField(): AbstractControl {
     return this.form.controls['editorial'];
+  }
+
+  get authorField(): AbstractControl {
+    return this.form.controls['author'];
+  }
+
+  get filePathField(): AbstractControl {
+    return this.form.controls['file_path'];
   }
   
   get descriptionField(): AbstractControl {

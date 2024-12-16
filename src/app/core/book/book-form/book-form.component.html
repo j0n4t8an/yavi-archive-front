@@ -2,7 +2,9 @@
   <app-navbar></app-navbar>
 </div>
 <div class="form-page-container">
-    <div class="form-section">
+
+  
+    <!-- <div class="form-section">
       <div class="form-content">
         <h2>Formulario de Libro</h2>
         <form [formGroup]="form" (ngSubmit)="addBook()">
@@ -58,7 +60,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
 
     
     <!-- Registro del PDF --> 
@@ -91,5 +93,123 @@
       </p-card>
     </div>
   </div>
+
+
+
+  <div class="register-container">
+    <div class="register-form">
+      <div class="form-container">
+        <h2>Registro de Libros</h2>
+        <p-card>
+          <form [formGroup]="form" (ngSubmit)="addBook()">
+            <div class="p-fluid">
+  
+              <div class="p-field">
+                <label for="title">Título:</label>
+                <input id="title" 
+                  type="text" 
+                  pInputText 
+                  name="title"
+                  formControlName="title" 
+                  placeholder="Ingrese El nombre del libro" 
+                  required />
+                <small *ngIf="titleField.invalid && titleField.touched" class="p-error">
+                  <span *ngIf="titleField.errors?.['required']">El título es obligatorio.</span>  
+                </small>
+              </div>
+              
+              <div class="p-field">
+                <label for="author">Autor:</label>
+                <input id="author" 
+                  type="text" 
+                  pInputText 
+                  name="author"
+                  formControlName="author" 
+                  placeholder="Ingrese el autor" 
+                  required />
+                <small *ngIf="authorField.invalid && authorField.touched" class="p-error">
+                  <span *ngIf="authorField.errors?.['required']">El autor es obligatorio.</span>  
+                </small>
+              </div>
+              
+              <div class="p-field">
+                <label for="file_path">URL:</label>
+                <input id="author" 
+                  type="text" 
+                  pInputText 
+                  name="file_path"
+                  formControlName="file_path" 
+                  placeholder="Ingrese el URL del libro" 
+                  required />
+                <small *ngIf="filePathField.invalid && filePathField.touched" class="p-error">
+                  <span *ngIf="filePathField.errors?.['required']">El URL  es obligatorio.</span>  
+                </small>
+              </div>
+
+              <div class="p-field">
+                <label for="year_publication">Año:</label>
+                <input id="year_publication" 
+                  type="text" 
+                  pInputText 
+                  name="year_publication"
+                  formControlName="year_publication" 
+                  placeholder="Ingrese el año de publicación" 
+                  required />
+                <small *ngIf="yearPublicationField.invalid && yearPublicationField.touched" class="p-error">
+                  <span *ngIf="yearPublicationField.errors?.['required']">El año de publicacion es obligatorio.</span>  
+                </small>
+              </div>
+
+              
+              <div class="p-field">
+                <label for="editorial">Editorial:</label>
+                <input id="editorial" 
+                  type="text" 
+                  pInputText 
+                  name="editorial"
+                  formControlName="editorial" 
+                  placeholder="Ingrese la editorial" 
+                  required />
+                <small *ngIf="editorialField.invalid && editorialField.touched" class="p-error">
+                  <span *ngIf="editorialField.errors?.['required']">El editorial es obligatorio.</span>  
+                </small>
+              </div>
+  
+              <div class="p-field">
+                <label for="career">Seleccione una categoria:</label>
+                <p-dropdown 
+                  [options]="categories" 
+                  placeholder="Seleccione una categoria" 
+                  name="category"
+                  formControlName="categoriesId"> 
+                </p-dropdown>
+                <small *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">
+                  <span *ngIf="categoriesIdField.errors?.['required']">El año de publicacion es obligatorio.</span>  
+                </small>
+              </div>
+
+              <div class="p-field">
+                <label for="description">Descripcion:</label>
+                <input id="description" 
+                  type="text" 
+                  pInputText 
+                  name="description"
+                  formControlName="description" 
+                  placeholder="Ingrese la descripcion" 
+                  required />
+                <small *ngIf="descriptionField.invalid && descriptionField.touched" class="p-error">
+                  <span *ngIf="descriptionField.errors?.['required']">La descripcion es obligatorio.</span>  
+                </small>
+              </div>
+              <button pButton type="submit" label="Añadir Libro" [disabled]="form.invalid" class="submit-button"></button>
+            </div>
+          </form>
+        </p-card>
+      </div>
+    </div>
   </div>
+  </div>
+
+  
+  
   

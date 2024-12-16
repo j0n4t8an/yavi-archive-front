@@ -14,9 +14,10 @@ export class CommentsListComponent {
   protected searchTerm: string = '';
 
   constructor(private commentService: CommentService, router: Router){
+    this.getComment();
   }
 
-  /* getComment() {
+  getComment() {
     this.commentService.getComments().subscribe(
       response => {
         console.log(response)
@@ -32,18 +33,17 @@ export class CommentsListComponent {
   filterComment() {
     if (this.searchTerm) {
       this.filteredComments = this.comments.filter((comment: any) =>
-        comment.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        student.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+        comment.comment.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
-      this.filteredStudents = this.students;
-      console.log(this.filteredStudents)
+      this.filteredComments = this.comments;
+      console.log(this.filteredComments)
     }
   }
  
-  deleteStudent(id:string){
-    this.userService.deleteUser(id).subscribe(response => {
-      this.getStudent();
+  deleteComment(id:string){
+    this.commentService.deleteComment(id).subscribe(response => {
+      this.getComment();
     })
-  } */
+  }
 }

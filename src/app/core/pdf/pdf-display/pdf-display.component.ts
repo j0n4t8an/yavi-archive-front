@@ -11,6 +11,11 @@ export class PdfDisplayComponent {
 
   constructor(public sanitizer: DomSanitizer) {}
 
+  ngOnInit() {
+    const book = JSON.parse(sessionStorage.getItem('book') || '{}');
+    console.log(book); // Aquí puedes usar los datos del libro para mostrar el PDF u otros detalles
+  }
+  
   openComments() {
  
     alert('Sección de comentarios abierta');

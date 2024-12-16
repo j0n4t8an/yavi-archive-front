@@ -104,7 +104,7 @@ export class BookFormComponent {
     return this.form.controls['title'];
   }
 
-  get year_publicationField(): AbstractControl {
+  get yearPublicationField(): AbstractControl {
     return this.form.controls['year_publication'];
   }
   
@@ -122,10 +122,6 @@ export class BookFormComponent {
   
   get descriptionField(): AbstractControl {
     return this.form.controls['description'];
-  }
-
-  get authorIdField(): AbstractControl {
-    return this.form.controls['authorId'];
   }
   
   get categoriesIdField(): AbstractControl {

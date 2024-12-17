@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BookRoutingModule } from './book-routing.module';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -16,12 +17,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BookService } from '../../services/books-http.service';
 import { NavbarModule } from '../../shared/shared.module';
-
+import { CardModule } from 'primeng/card';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
     BookFormComponent,
-    BookListComponent
+    BookListComponent,
+    BookEditComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,10 @@ import { NavbarModule } from '../../shared/shared.module';
     InputTextModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    NavbarModule
+    NavbarModule,
+    CardModule,
+    FileUploadModule,
+    ToastModule
   ],
   providers: [BookService]
 })

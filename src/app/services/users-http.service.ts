@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateUserModel } from '../models/user.model';
+import { CreateUserModel, EditUserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,23 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/users`,createUser);
   }
 
+  userUpdate(id:string,EditUser: EditUserModel): Observable<any>{
+    return this.http.put(`${this.apiUrl}/users/${id}`,EditUser);
+  }
+  
   findAllCarerrs():Observable<any> {
     return this.http.get(`${this.apiUrl}/career`);
+  }
+
+  getUser(id:string): Observable<any>{
+    return this.http.get(`${this.apiUrl}/users/${id}`);
+  }
+
+  getStudents(){
+    return this.http.get(`${this.apiUrl}/users`);
+  }
+
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/users/${id}`);
   }
 }

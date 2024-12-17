@@ -1,0 +1,127 @@
+<div class="register-container">
+    <div class="register-form">
+      <div class="form-container">
+        <h2>Registro de Libros</h2>
+        <p-card>
+          <form [formGroup]="form">
+            <div class="p-fluid">
+  
+              <!-- Campo Título -->
+              <div class="p-field">
+                <label for="title">Título:</label>
+                <input id="title"
+                  type="text"
+                  pInputText
+                  name="title"
+                  formControlName="title"
+                  placeholder="Ingrese el nombre del libro"
+                  required />
+                <small *ngIf="titleField.invalid && titleField.touched" class="p-error">
+                  <span *ngIf="titleField.errors?.['required']">El título es obligatorio.</span>
+                </small>
+              </div>
+  
+              <!-- Campo Autor -->
+              <div class="p-field">
+                <label for="author">Autor:</label>
+                <input id="author"
+                  type="text"
+                  pInputText
+                  name="author"
+                  formControlName="author"
+                  placeholder="Ingrese el autor"
+                  required />
+                <small *ngIf="authorField.invalid && authorField.touched" class="p-error">
+                  <span *ngIf="authorField.errors?.['required']">El autor es obligatorio.</span>
+                </small>
+              </div>
+  
+              <!-- Campo URL -->
+              <div class="p-field">
+                <label for="file_path">URL:</label>
+                <input id="file_path"
+                  type="text"
+                  pInputText
+                  name="file_path"
+                  formControlName="file_path"
+                  placeholder="URL del libro"
+                  [disabled]="true" />
+                <small *ngIf="filePathField.invalid && filePathField.touched" class="p-error">
+                  <span *ngIf="filePathField.errors?.['required']">El URL es obligatorio.</span>
+                </small>
+              </div>
+  
+              <!-- Campo Año -->
+              <div class="p-field">
+                <label for="year_publication">Año:</label>
+                <input id="year_publication"
+                  type="text"
+                  pInputText
+                  name="year_publication"
+                  formControlName="year_publication"
+                  placeholder="Ingrese el año de publicación"
+                  required />
+                <small *ngIf="yearPublicationField.invalid && yearPublicationField.touched" class="p-error">
+                  <span *ngIf="yearPublicationField.errors?.['required']">El año de publicación es obligatorio.</span>
+                </small>
+              </div>
+  
+              <!-- Campo Editorial -->
+              <div class="p-field">
+                <label for="editorial">Editorial:</label>
+                <input id="editorial"
+                  type="text"
+                  pInputText
+                  name="editorial"
+                  formControlName="editorial"
+                  placeholder="Ingrese la editorial"
+                  required />
+                <small *ngIf="editorialField.invalid && editorialField.touched" class="p-error">
+                  <span *ngIf="editorialField.errors?.['required']">La editorial es obligatoria.</span>
+                </small>
+              </div>
+  
+              <!-- Campo Categoría -->
+              <div class="p-field">
+                <label for="categoriesId">Seleccione una categoría:</label>
+                <p-dropdown
+                  [options]="categories"
+                  placeholder="Seleccione una categoría"
+                  name="category"
+                  formControlName="categoriesId"
+                  [disabled]="true"> <!-- Deshabilitado -->
+                </p-dropdown>
+                <small *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">
+                  <span *ngIf="categoriesIdField.errors?.['required']">La categoría es obligatoria.</span>
+                </small>
+              </div>
+  
+              <!-- Campo Descripción -->
+              <div class="p-field">
+                <label for="description">Descripción:</label>
+                <input id="description"
+                  type="text"
+                  pInputText
+                  name="description"
+                  formControlName="description"
+                  placeholder="Ingrese la descripción"
+                  required />
+                <small *ngIf="descriptionField.invalid && descriptionField.touched" class="p-error">
+                  <span *ngIf="descriptionField.errors?.['required']">La descripción es obligatoria.</span>
+                </small>
+              </div>
+  
+              <!-- Botón de envío -->
+              <button pButton
+                type="submit"
+                label="Añadir Libro"
+                [disabled]="form.invalid"
+                class="submit-button">
+              </button>
+            </div>
+          </form>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  

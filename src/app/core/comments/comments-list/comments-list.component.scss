@@ -1,0 +1,81 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    width: 100vw;
+    
+    background: url('/assets/fondo.jpeg') no-repeat center center;
+    //background: url('/assets/YAVIRAC1.jpg') no-repeat center center;
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-attachment: fixed; /* Fija la imagen al hacer scroll */
+  
+    position: fixed; /* Posición normal para el contenedor */
+    top: 0;
+    left: 0;
+    
+    z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
+  }
+    .container {
+      display: flex;
+      padding: 120px 0; 
+    }
+  
+    :host ::ng-deep .p-datatable {
+      border: 4px solid  #000783ee; 
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #36d14e;
+    }
+  
+    :host ::ng-deep .p-datatable-thead {
+      > tr {
+        > th {
+          background-color: #000783ee; 
+          color: white; 
+        }
+      }
+    }
+  
+    .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .table-title {
+      margin: 0;
+    }
+  
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+  
+    .search-icon {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  
+    .p-datatable {
+      border: 4px solid #000783ee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  
+    .p-datatable-thead > tr > th {
+      background-color: #000783ee;
+      color: white;
+    }
+  
+    .p-datatable-tbody tr:hover {
+      background-color: #b9b9b9;
+      cursor: pointer;
+    }
+  
+    .p-datatable-tbody tr:hover td {
+      color: #000783ee;
+    }
+  
+  
+  

@@ -5,7 +5,8 @@ export interface CreateBookModel {
      year_publication:string;
      description:string; 
      categoriesId: string;
-     authorId: string;
+     author: string;
+     file_path:string;
 }
 
 export interface CategoriesModel {

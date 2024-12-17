@@ -3,17 +3,33 @@ import { CommonModule } from '@angular/common';
 
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentFormComponent } from './student-form/student-form.component';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthRoutingModule } from '../../auth/auth-routing.module';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { PanelModule } from 'primeng/panel';
+import { DividerModule } from 'primeng/divider';
+import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [
     StudentFormComponent,
-    StudentProfileComponent
   ],
   imports: [
     CommonModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    ReactiveFormsModule,
+    AuthRoutingModule,
+    ButtonModule,
+    InputTextModule,
+    PasswordModule,
+    PanelModule,
+    DividerModule,
+    CardModule,
+    DropdownModule,
   ]
 })
 export class StudentModule { }

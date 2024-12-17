@@ -1,0 +1,19 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la pantalla */
+    width: 100vw; /* Ancho completo de la pantalla */
+    
+    background: url('/assets/notFound.gif') no-repeat center center;
+    background-size:110%; /* Asegura que la imagen cubra todo el fondo, aunque se recorte un poco */
+    background-attachment: fixed; /* Fija la imagen al hacer scroll */
+    background-color: #000; /* Fondo negro si la imagen no cubre completamente */
+    
+    position: fixed; /* Fija el fondo al viewport */
+    top: 0;
+    left: 0;
+    
+    z-index: -1; /* Mantiene la imagen detrás del contenido */
+  }
+  

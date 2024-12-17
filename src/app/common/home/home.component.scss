@@ -1,0 +1,68 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% de la altura de la pantalla */
+  width: 100vw; /* Ancho completo de la pantalla */
+  
+  background: url('/assets/fondo.jpeg') no-repeat center center;
+  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+  background-position: center; /* Centra la imagen */
+  
+  position: relative; /* Posición normal para el contenedor */
+  top: 0;
+  left: 0;
+  
+  z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.first-row-card {
+  width: 400px; /* Cambia el ancho solo para las tarjetas de la primera fila */
+  height: auto; /* Ajusta la altura automáticamente */
+}
+
+.first-row-card img {
+  border-radius: 15px; /* Opcional: Cambia el diseño de las imágenes dentro de las tarjetas de la primera fila */
+}
+
+
+.row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
+}
+
+.spacer {
+  width: 300px; /* Espacio entre las tarjetas */
+}
+
+.content {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.dynamic-card {
+  cursor: pointer; /* Cursor de mano al pasar sobre la tarjeta */
+}

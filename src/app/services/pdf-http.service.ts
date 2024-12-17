@@ -23,4 +23,8 @@ export class PdfService {
   addPdf(createPdf: CreatePdfModel): Observable<any> {
     return this.http.post(`${this.apiUrl}/pdf`,createPdf); 
   }
+
+  getPdfById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pdfs/${id}`);
+  }
 }

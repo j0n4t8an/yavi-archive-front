@@ -16,6 +16,8 @@ export class BookFormComponent {
   protected form!: FormGroup;
   protected categories: [] = [];
   protected uploadedFiles: any[] = [];
+  private fileTmp:any;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -91,13 +93,20 @@ export class BookFormComponent {
     );
   }
 
-  onUpload(event:FileUploadEvent) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
+  getFile($event: any): void {
+    const [ file ] = $event.target.files;
+    this.fileTmp = {
+      fileRaw:file,
+      fileName:file.name
     }
+  }
 
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
+  sendFile():void{
+    const body = new FormData();
+    body.append('file', this.fileTmp.fileRaw, this.fileTmp.fileName);
+    this.bookService.sendPost(body)
+    .subscribe(res => console.log(res))
+  }
 
   // Getters para validaciones
   get titleField(): AbstractControl {

@@ -11,6 +11,8 @@ import { CardModule } from 'primeng/card';
 import { FileUploadModule} from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { MessageService } from 'primeng/api';
     AuthRoutingModule,
     CardModule,
     FileUploadModule,
-    ToastModule
+    ToastModule,
+    PdfViewerModule
   ],
   providers: [MessageService] // Asegúrate de añadirlo a los proveedores
 })

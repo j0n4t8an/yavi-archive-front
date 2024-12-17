@@ -3,99 +3,29 @@
 </div>
 <div class="form-page-container">
 
-  
-    <!-- <div class="form-section">
-      <div class="form-content">
-        <h2>Formulario de Libro</h2>
-        <form [formGroup]="form" (ngSubmit)="addBook()">
-          <div class="p-fluid">
-            <div class="p-field">
-              <label for="title">Título</label>
-              <input id="title" type="text" formControlName="title" pInputText />
-              <p *ngIf="titleField.invalid && titleField.touched" class="p-error">El título es obligatorio y debe tener al menos 3 caracteres.</p>
-            </div>
-  
-            <div class="p-field">
-              <label for="author">Autor</label>
-              <input id="author" type="text" formControlName="author" pInputText />
-              <p *ngIf="authorField.invalid && authorField.touched" class="p-error">El author es obligatorio y debe tener al menos 3 caracteres.</p>
-            </div>
-
-            <div class="p-field">
-              <label for="file_path">Url del pdf</label>
-              <input id="file_path" type="text" formControlName="file_path" pInputText />
-              <p *ngIf="filePathField.invalid && filePathField.touched" class="p-error">El URL es obligatorio.</p>
-            </div>
-  
-            <div class="p-field">
-              <label for="year">Año</label>
-              <input id="year" type="text" formControlName="year_publication" pInputText />
-              <p *ngIf="year_publicationField.invalid && year_publicationField.touched" class="p-error">El año es obligatorio y debe estar entre 1000 y 2100.</p>
-            </div>
-  
-            <div class="p-field">
-              <label for="editorial">Editorial</label>
-              <input id="editorial" type="text" formControlName="editorial" pInputText />
-              <p *ngIf="editorialField.invalid && editorialField.touched" class="p-error">La editorial es obligatoria.</p>
-            </div>
-  
-            <div class="p-field">
-              <label for="category">Categoría</label>
-              <p-dropdown
-                id="category"
-                formControlName="categoriesId"
-                [options]="categories"
-                placeholder="Selecciona una categoría"
-              ></p-dropdown>
-              <p *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">La categoría es obligatoria.</p>
-            </div>
-  
-            <div class="p-field">
-              <label for="description">Descripción</label>
-              <textarea id="description" formControlName="description" pInputTextarea></textarea>
-              <p *ngIf="descriptionField.invalid && descriptionField.touched" class="p-error">La descripción es obligatoria y debe tener al menos 10 caracteres.</p>
-            </div>
-  
-            <button pButton type="submit" label="Añadir Libro" [disabled]="form.invalid" class="submit-button"></button>
-          </div>
-        </form>
-      </div>
-    </div> -->
-
-    
-    <!-- Registro del PDF --> 
-    <div class="register-form">
+  <div class="register-form">
     <div class="form-container">
       <h2>Registro de PDF</h2>
       <p-card>
         <!-- Upload section -->
         <div class="card">
-          <p-toast/>
-          <p-fileUpload
-            name="demo[]"
-            url="/src/assets/pdfs"
-            (onUpload)="onUpload($event)"
-            accept="application/pdf"
-            [multiple]="false"
-            maxFileSize="1000000"
-            mode="advanced">
-            
-            <ng-template pTemplate="empty">
-              <div>Arrastra y suelta archivos aquí para subirlos.</div>
-          </ng-template>
-          <ng-template pTemplate="content">
-              <ul *ngIf="uploadedFiles.length">
-                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-              </ul>
-          </ng-template>
-          </p-fileUpload>
+          <div>
+            <div>
+              <span>Adjunta tu file</span>
+              <input type="file" (change)="getFile($event)">
+            </div>
+
+            <div>
+              <button (click)="sendFile()">Enviar</button>
+            </div>
+          </div>
         </div>
       </p-card>
     </div>
   </div>
 
 
-
+<!-- REGISTRO DEL LIBRO -->
   <div class="register-container">
     <div class="register-form">
       <div class="form-container">
@@ -213,3 +143,64 @@
   
   
   
+
+
+  
+  
+    <!-- <div class="form-section">
+      <div class="form-content">
+        <h2>Formulario de Libro</h2>
+        <form [formGroup]="form" (ngSubmit)="addBook()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="title">Título</label>
+              <input id="title" type="text" formControlName="title" pInputText />
+              <p *ngIf="titleField.invalid && titleField.touched" class="p-error">El título es obligatorio y debe tener al menos 3 caracteres.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="author">Autor</label>
+              <input id="author" type="text" formControlName="author" pInputText />
+              <p *ngIf="authorField.invalid && authorField.touched" class="p-error">El author es obligatorio y debe tener al menos 3 caracteres.</p>
+            </div>
+
+            <div class="p-field">
+              <label for="file_path">Url del pdf</label>
+              <input id="file_path" type="text" formControlName="file_path" pInputText />
+              <p *ngIf="filePathField.invalid && filePathField.touched" class="p-error">El URL es obligatorio.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="year">Año</label>
+              <input id="year" type="text" formControlName="year_publication" pInputText />
+              <p *ngIf="year_publicationField.invalid && year_publicationField.touched" class="p-error">El año es obligatorio y debe estar entre 1000 y 2100.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="editorial">Editorial</label>
+              <input id="editorial" type="text" formControlName="editorial" pInputText />
+              <p *ngIf="editorialField.invalid && editorialField.touched" class="p-error">La editorial es obligatoria.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="category">Categoría</label>
+              <p-dropdown
+                id="category"
+                formControlName="categoriesId"
+                [options]="categories"
+                placeholder="Selecciona una categoría"
+              ></p-dropdown>
+              <p *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">La categoría es obligatoria.</p>
+            </div>
+  
+            <div class="p-field">
+              <label for="description">Descripción</label>
+              <textarea id="description" formControlName="description" pInputTextarea></textarea>
+              <p *ngIf="descriptionField.invalid && descriptionField.touched" class="p-error">La descripción es obligatoria y debe tener al menos 10 caracteres.</p>
+            </div>
+  
+            <button pButton type="submit" label="Añadir Libro" [disabled]="form.invalid" class="submit-button"></button>
+          </div>
+        </form>
+      </div>
+    </div> -->

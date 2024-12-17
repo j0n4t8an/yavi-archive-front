@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { CommonModule } from './common/common.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { CommonModule } from './common/common.module';
     BrowserModule,
     BrowserAnimationsModule, 
     AppRoutingModule,
-    CommonModule 
+    CommonModule,
+    PdfViewerModule
   ],
   providers: [
     provideHttpClient(),

@@ -38,9 +38,9 @@
                     <td>{{book.author}}</td>
                     <td>{{book.year_publication}}</td>
                     <td><p-button severity="danger" size="small" icon="pi pi-trash"
-                        (onClick)="deleteBook(books.id)"/>
+                        (onClick)="deleteBook(book.id)"/>
                         <p-button severity="success" size="small" icon="pi pi-pencil"
-                        [routerLink]="['/src/app/core/book/book-edit.component.html']"/></td>
+                        (onClick)="editBook(book.id)"/></td>
                 </tr>
             </ng-template>
         </p-table>

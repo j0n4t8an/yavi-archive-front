@@ -30,7 +30,6 @@ export class StudentFormComponent {
       lastName: [null,[Validators.required]],
       email: [null, [Validators.required, Validators.email]], 
       password: [null, [Validators.required,Validators.minLength(8),this.passwordValidator]],
-      careerId:[null, [Validators.required]],
     });
   }
 
@@ -65,6 +64,7 @@ export class StudentFormComponent {
   }
   
   updateUser() {
+    console.log(this.form.value);
     if (this.form.valid) {
       const userId = this.decodedToken.id;
       const formData = this.form.value;
@@ -73,6 +73,8 @@ export class StudentFormComponent {
         (response) => {
           console.log('Datos actualizados correctamente:', response);
           alert('¡Datos actualizados con éxito!');
+          this.router.navigate(['/core/library/library-list']);
+
         },
         (error) => {
           console.error('Error al actualizar los datos del usuario:', error);
@@ -80,7 +82,7 @@ export class StudentFormComponent {
         }
       );
     } else {
-      console.warn('El formulario no es válido. Por favor, verifica los campos.');
+      console.log('El formulario no es válido. Por favor, verifica los campos.');
       this.form.markAllAsTouched();
     }
   }
@@ -113,9 +115,5 @@ export class StudentFormComponent {
 
   get passwordField(): AbstractControl {
     return this.form.controls['password'];
-  }
-  
-  get careerField(): AbstractControl {
-    return this.form.controls['carrerId'];
   }
 }

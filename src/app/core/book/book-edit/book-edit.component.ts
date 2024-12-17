@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { BookService } from '../../../services/books-http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesModel } from '../../../models/book.model';
@@ -17,10 +16,10 @@ export class BookEditComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private bookService: BookService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    /* private messageService: MessageService, */
   ) {
     this.form = this.buildForm();
     this.findAllCategories();
@@ -82,7 +81,7 @@ export class BookEditComponent {
           });
         } else {
           console.error('Libro no encontrado');
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Libro no encontrado' });
+          /* this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Libro no encontrado' }); */
         }
       },
       (error) => {
@@ -98,12 +97,12 @@ export class BookEditComponent {
       this.bookService.updateBook(this.bookId, this.form.value).subscribe(
         (response) => {
           console.log('Libro actualizado correctamente:', response);
-          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Libro actualizado correctamente' });
+          /* this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Libro actualizado correctamente' }); */
           this.router.navigate(['/books']);
         },
         (error) => {
           console.error('Error al actualizar el libro:', error);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar el libro' });
+          /* this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar el libro' }); */
         }
       );
     } else {

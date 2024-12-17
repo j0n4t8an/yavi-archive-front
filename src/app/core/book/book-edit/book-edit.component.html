@@ -36,21 +36,6 @@
                 </small>
               </div>
   
-              <!-- Campo URL -->
-              <div class="p-field">
-                <label for="file_path">URL:</label>
-                <input id="file_path"
-                  type="text"
-                  pInputText
-                  name="file_path"
-                  formControlName="file_path"
-                  placeholder="URL del libro"
-                  [disabled]="true" />
-                <small *ngIf="filePathField.invalid && filePathField.touched" class="p-error">
-                  <span *ngIf="filePathField.errors?.['required']">El URL es obligatorio.</span>
-                </small>
-              </div>
-  
               <!-- Campo Año -->
               <div class="p-field">
                 <label for="year_publication">Año:</label>
@@ -81,21 +66,6 @@
                 </small>
               </div>
   
-              <!-- Campo Categoría -->
-              <div class="p-field">
-                <label for="categoriesId">Seleccione una categoría:</label>
-                <p-dropdown
-                  [options]="categories"
-                  placeholder="Seleccione una categoría"
-                  name="category"
-                  formControlName="categoriesId"
-                  [disabled]="true"> <!-- Deshabilitado -->
-                </p-dropdown>
-                <small *ngIf="categoriesIdField.invalid && categoriesIdField.touched" class="p-error">
-                  <span *ngIf="categoriesIdField.errors?.['required']">La categoría es obligatoria.</span>
-                </small>
-              </div>
-  
               <!-- Campo Descripción -->
               <div class="p-field">
                 <label for="description">Descripción:</label>
@@ -114,8 +84,7 @@
               <!-- Botón de envío -->
               <button pButton
                 type="submit"
-                label="Añadir Libro"
-                [disabled]="form.invalid"
+                label="Actualizar Libro"
                 class="submit-button">
               </button>
             </div>

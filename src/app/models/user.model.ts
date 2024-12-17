@@ -12,7 +12,6 @@ export interface EditUserModel{
     lastName: string;
     email: string;
     password: string;
-    careerId:any;
 }
 
 export interface CareerModel{

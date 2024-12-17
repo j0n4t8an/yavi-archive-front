@@ -20,7 +20,7 @@ export class UserService {
   }
 
   userUpdate(id:string,EditUser: EditUserModel): Observable<any>{
-    return this.http.put(`${this.apiUrl}/users/${id}`,EditUser);
+    return this.http.patch(`${this.apiUrl}/users/${id}`,EditUser);
   }
   
   findAllCarerrs():Observable<any> {

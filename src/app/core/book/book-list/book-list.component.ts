@@ -57,4 +57,9 @@ export class BookListComponent {
       this.getBook();
     })
   }
+
+  editBook(book:string){
+    sessionStorage.setItem('book', book);
+    this.router.navigate(['/core/book/book-edit']);
+  }
 }

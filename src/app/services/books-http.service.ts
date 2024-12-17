@@ -35,4 +35,9 @@ export class BookService {
   updateBook(id: string, bookData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/books/${id}`, bookData);
   }
+
+  getBookById(bookId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/books/${bookId}`);
+  }
+  
 }

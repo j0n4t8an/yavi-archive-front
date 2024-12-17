@@ -14,7 +14,7 @@ const routes: Routes = [
       component: BookListComponent
     },
     {
-      path:'book-edit',
+      path:'book-edit/:id',
       component: BookEditComponent
     },
 ];

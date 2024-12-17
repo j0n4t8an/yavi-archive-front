@@ -60,6 +60,6 @@ export class BookListComponent {
 
   editBook(book:string){
     sessionStorage.setItem('book', book);
-    this.router.navigate(['/core/book/book-edit']);
+    this.router.navigate(['/core/book/book-edit/'+book]);
   }
 }

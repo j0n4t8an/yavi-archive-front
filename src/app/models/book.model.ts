@@ -13,3 +13,11 @@ export interface CategoriesModel {
      id:string;
      name:string;
 }
+
+export interface UpdateBookModel {
+     title:string;
+     editorial:string;
+     year_publication:string;
+     description:string; 
+     author: string;
+}

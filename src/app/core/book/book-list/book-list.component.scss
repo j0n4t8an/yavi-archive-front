@@ -1,80 +1,135 @@
+/* Fondo principal */
 .home-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 100vh;
   width: 100vw;
-  
-  background: url('/assets/fondo.jpeg') no-repeat center center;
-  //background: url('/assets/YAVIRAC1.jpg') no-repeat center center;
-  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
-  background-attachment: fixed; /* Fija la imagen al hacer scroll */
 
-  position: fixed; /* Posición normal para el contenedor */
+  background: url('/assets/fondo.jpeg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  position: fixed;
   top: 0;
   left: 0;
-  
-  z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
+
+  z-index: -1;
 }
-  .container {
-    display: flex;
-    padding: 120px 0; 
-  }
 
-  :host ::ng-deep .p-datatable {
-    border: 4px solid  #000783ee; 
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #36d14e;
-  }
+/* Contenedor */
+.container {
+  display: flex;
+  padding: 100px 0;
+}
 
-  :host ::ng-deep .p-datatable-thead {
-    > tr {
-      > th {
-        background-color: #000783ee; 
-        color: white; 
-      }
-    }
-  }
+/* Tabla personalizada */
+.custom-table {
+  border: 4px solid #0056b3;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: transform 0.3s ease;
+}
 
-  .table-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.custom-table:hover {
+  transform: scale(1.02);
+}
 
-  .table-title {
-    margin: 0;
-  }
+/* Cabecera de la tabla */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #004080;
+  color: white;
+  font-weight: bold;
+  border-bottom: 4px solid #0056b3;
+}
 
-  .search-bar {
-    display: flex;
-    align-items: center;
-  }
+.table-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
 
-  .search-icon {
-    margin-left: 5px;
-    cursor: pointer;
-  }
+.search-bar {
+  display: flex;
+  align-items: center;
+}
 
-  .p-datatable {
-    border: 4px solid #000783ee;
-    border-radius: 10px;
-    overflow: hidden;
-  }
+.search-bar input {
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
 
-  .p-datatable-thead > tr > th {
-    background-color: #000783ee;
-    color: white;
-  }
+.search-bar input:focus {
+  box-shadow: 0 0 10px rgba(0, 86, 179, 0.7);
+}
 
-  .p-datatable-tbody tr:hover {
-    background-color: #b9b9b9;
-    cursor: pointer;
-  }
+.search-icon {
+  margin-left: -2rem;
+  cursor: pointer;
+  color: #004080;
+}
 
-  .p-datatable-tbody tr:hover td {
-    color: #000783ee;
-  }
+/* Encabezados de la tabla */
+.p-datatable-thead > tr > th {
+  background-color: #0056b3;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
 
+/* Cuerpo de la tabla */
+.p-datatable-tbody tr {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
+.p-datatable-tbody tr:hover {
+  background-color: #e6f7ff;
+  cursor: pointer;
+}
+
+.p-datatable-tbody tr:hover td {
+  color: #004080;
+}
+
+/* Estilo específico para la columna de descripción */
+.custom-table .description-cell {
+  word-wrap: break-word;      /* Permite que el texto se divida en líneas */
+  white-space: normal;        /* Asegura que el texto pueda romperse */
+  overflow: hidden;           /* Evita que el texto se desborde */
+  max-height: 100px;          /* Limita la altura de la celda para mostrar varias líneas */
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.rounded-button {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.p-button-danger {
+  background-color: #e74c3c !important;
+  border: none;
+}
+
+.p-button-success {
+  background-color: #27ae60 !important;
+  border: none;
+}
+
+.p-button:hover {
+  opacity: 0.8;
+}

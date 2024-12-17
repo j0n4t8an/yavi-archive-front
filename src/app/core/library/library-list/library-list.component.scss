@@ -1,81 +1,119 @@
+/* Fondo principal */
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    width: 100vw;
-    
-    background: url('/assets/fondo.jpeg') no-repeat center center;
-    //background: url('/assets/YAVIRAC1.jpg') no-repeat center center;
-    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
-    background-attachment: fixed; /* Fija la imagen al hacer scroll */
-  
-    position: fixed; /* Posición normal para el contenedor */
-    top: 0;
-    left: 0;
-    
-    z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
-  }
-    .container {
-      display: flex;
-      padding: 120px 0; 
-    }
-  
-    :host ::ng-deep .p-datatable {
-      border: 4px solid  #000783ee; 
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: #36d14e;
-    }
-  
-    :host ::ng-deep .p-datatable-thead {
-      > tr {
-        > th {
-          background-color: #000783ee; 
-          color: white; 
-        }
-      }
-    }
-  
-    .table-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  
-    .table-title {
-      margin: 0;
-    }
-  
-    .search-bar {
-      display: flex;
-      align-items: center;
-    }
-  
-    .search-icon {
-      margin-left: 5px;
-      cursor: pointer;
-    }
-  
-    .p-datatable {
-      border: 4px solid #000783ee;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-  
-    .p-datatable-thead > tr > th {
-      background-color: #000783ee;
-      color: white;
-    }
-  
-    .p-datatable-tbody tr:hover {
-      background-color: #b9b9b9;
-      cursor: pointer;
-    }
-  
-    .p-datatable-tbody tr:hover td {
-      color: #000783ee;
-    }
-  
-  
-  
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw;
+
+  background: url('/assets/fondo.jpeg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+}
+
+/* Contenedor */
+.container {
+  display: flex;
+  padding: 80px 0;
+}
+
+/* Tabla personalizada */
+.custom-table {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+}
+
+.custom-table:hover {
+  transform: scale(1.01);
+}
+
+/* Cabecera de la tabla */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #004080, #0074e4);
+  color: white;
+  border-radius: 12px 12px 0 0;
+}
+
+.table-title {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-bar input {
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input:focus {
+  box-shadow: 0 0 10px rgba(0, 116, 228, 0.7);
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  color: #0074e4;
+  font-size: 1.2rem;
+}
+
+/* Encabezados de la tabla */
+.p-datatable-thead > tr > th {
+  background-color: #0074e4;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.8rem;
+}
+
+/* Cuerpo de la tabla */
+.p-datatable-tbody tr {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.p-datatable-tbody tr:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.p-datatable-tbody tr:hover td {
+  color: #0074e4;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rounded-button {
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  transition: transform 0.2s ease;
+}
+
+.rounded-button:hover {
+  transform: scale(1.1);
+}

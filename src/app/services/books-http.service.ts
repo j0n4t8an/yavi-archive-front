@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateBookModel } from '../models/book.model';
+import { CreateBookModel, UpdateBookModel } from '../models/book.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,6 @@ export class BookService {
     return this.http.get(`${this.apiUrl}/categories`);
   }
 
-  // Método para agregar un libro
   addBook(createBook: CreateBookModel): Observable<any> {
     return this.http.post(`${this.apiUrl}/books`,createBook); 
   }
@@ -32,11 +31,11 @@ export class BookService {
     return this.http.post(`${this.apiUrl}/pdfs`, body);
   }
 
-  updateBook(id: string, bookData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/books/${id}`, bookData);
-  }
+  updateBook(id: string, bookData: UpdateBookModel): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/books/${id}`, bookData);
+  } 
 
-  getBookById(bookId: number): Observable<any> {
+  getBookById(bookId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/books/${bookId}`);
   }
   

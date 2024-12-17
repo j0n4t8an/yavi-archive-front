@@ -1,49 +1,71 @@
 <app-navbar></app-navbar>
 <div class="home-container">
-<div class="container">
+  <div class="container">
     <div class="main">
-        <p-table class="col-11" 
-            [tableStyle]="{ 'min-width': '80rem'}" 
-            styleClass="p-datatable-striped"
-            [value]="filteredBooks" 
-            [paginator]="true" 
-            [rows]="5">
-            <ng-template pTemplate="caption">
-                <div class="table-header">
-                    <h2 class="table-title">Lista de Libros</h2>
-                    <div class="search-bar">
-                        <input type="text" 
-                            pInputText placeholder="Buscar..." 
-                            [(ngModel)]="searchTerm"
-                            (ngModelChange)="filterBook()"/>
-                        <i class="pi pi-search search-icon"></i>
-                    </div>
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width:20%">Título</th>
-                    <th style="width:10%">Descripción</th>
-                    <th style="width:20%">Editorial</th>
-                    <th style="width:20%">Autor</th>
-                    <th style="width:8%">Año</th>
-                    <th style="width:12%">Acciones</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-book>
-                <tr>
-                    <td>{{book.title}}</td>
-                    <td>{{book.description}}</td>
-                    <td>{{book.editorial}}</td>
-                    <td>{{book.author}}</td>
-                    <td>{{book.year_publication}}</td>
-                    <td><p-button severity="danger" size="small" icon="pi pi-trash"
-                        (onClick)="deleteBook(book.id)"/>
-                        <p-button severity="success" size="small" icon="pi pi-pencil"
-                        (onClick)="editBook(book.id)"/></td>
-                </tr>
-            </ng-template>
-        </p-table>
+      <p-table
+        class="col-11 custom-table"
+        [tableStyle]="{ 'min-width': '80rem' }"
+        styleClass="p-datatable-striped"
+        [value]="filteredBooks"
+        [paginator]="true"
+        [rows]="5"
+        responsiveLayout="scroll">
+        
+        <!-- Cabecera de la tabla -->
+        <ng-template pTemplate="caption">
+          <div class="table-header">
+            <h2 class="table-title">Lista de Libros</h2>
+            <div class="search-bar">
+              <input type="text" 
+                     pInputText 
+                     placeholder="Buscar libros..." 
+                     [(ngModel)]="searchTerm" 
+                     (ngModelChange)="filterBook()" />
+              <i class="pi pi-search search-icon"></i>
+            </div>
+          </div>
+        </ng-template>
+        
+        <!-- Encabezados de la tabla -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 20%">Título</th>
+            <th style="width: 15%">Descripción</th>
+            <th style="width: 15%">Editorial</th>
+            <th style="width: 15%">Autor</th>
+            <th style="width: 8%">Año</th>
+            <th style="width: 12%">Acciones</th>
+          </tr>
+        </ng-template>
+
+        <!-- Cuerpo de la tabla -->
+        <ng-template pTemplate="body" let-book>
+          <tr>
+            <td>{{ book.title }}</td>
+            <!-- Añadir la clase description-cell aquí -->
+            <td class="description-cell">{{ book.description }}</td>
+            <td>{{ book.editorial }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.year_publication }}</td>
+            <td class="action-buttons">
+              <p-button 
+                severity="danger" 
+                size="small" 
+                icon="pi pi-trash"
+                styleClass="rounded-button"
+                (onClick)="deleteBook(book.id)">
+              </p-button>
+              <p-button 
+                severity="success" 
+                size="small" 
+                icon="pi pi-pencil"
+                styleClass="rounded-button"
+                (onClick)="editBook(book.id)">
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
-</div>
+  </div>
 </div>

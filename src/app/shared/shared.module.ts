@@ -6,11 +6,13 @@ import { NavbarRoutingModule } from './shared-routing.module';
 
 import { MenubarModule } from 'primeng/menubar'; // Para la barra de navegación
 import { ButtonModule } from 'primeng/button';  // Para los botones pButton
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,6 @@ import { ButtonModule } from 'primeng/button';  // Para los botones pButton
     MenubarModule,
     ButtonModule
   ],
-  exports: [NavbarComponent]  // Este módulo puede ser usado en otros módulos para mostrar la barra de navegación
+  exports: [NavbarComponent, FooterComponent]  // Este módulo puede ser usado en otros módulos para mostrar la barra de navegación
 })
 export class NavbarModule { }

@@ -1,60 +1,84 @@
 .form-page-container {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    height: 100vh;
-  }
-  
-  .image-section {
-    flex: 1;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .library-image {
-    max-width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-section {
-    flex: 1;
-    padding: 2rem;
-    background-color: #be340a;
-    background-image: url('https://img.freepik.com/vector-gratis/interior-biblioteca-dibujos-animados-fondo-estanteria_107791-19699.jpg?semt=ais_hybrid'); /* Ruta de la imagen */
-    background-size: cover; /* Asegura que la imagen cubra todo el espacio */
-    background-position: center; /* Centra la imagen */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-    color: #fff; /* Cambia el color del texto para que contraste con la imagen */
-  }
-  
-  
-  .form-content {
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .p-field {
-    margin-bottom: 1rem;
-  }
-  
-  .p-error {
-    font-size: 0.85rem;
-    margin-top: 0.25rem;
-  }
-  
-  .submit-button {
-    width: 100%;
-  }
-  
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  background-image: url('/assets/fondo.jpeg'); /* Ruta de la imagen */
+  background-size: cover; /* La imagen cubrirá toda la pantalla */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.p-card {
+  width: 100%;
+  height: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.pdf-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+}
+
+.button-pdf {
+  background-color: #28a745 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button-pdf:hover {
+  background-color: #218838 !important;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #007bff !important;
+  color: white !important;
+  border-radius: 5px;
+  padding: 0.75rem;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3 !important;
+}
+
+.p-error {
+  font-size: 0.85rem;
+  color: #dc3545;
+}
+

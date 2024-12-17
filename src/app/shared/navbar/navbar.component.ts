@@ -25,7 +25,7 @@ export class NavbarComponent{
   logout(): void {
     sessionStorage.clear();
     this.menuItems = []; // Limpia las opciones del menú al cerrar sesión
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/home']);
   }
 
   // Método para decodificar el token y obtener userTypeId
@@ -72,8 +72,8 @@ export class NavbarComponent{
             label: 'Libros',
             icon: 'pi pi-book',
             items: [
-              { label: 'Registrar libro', icon: 'pi pi-plus', routerLink: '/core/books/books-form' },
-              { label: 'Lista de libros', icon: 'pi pi-book', routerLink: '/core/books/books-list' }
+              { label: 'Registrar libro', icon: 'pi pi-plus', routerLink: '/core/book/book-form' },
+              { label: 'Lista de libros', icon: 'pi pi-book', routerLink: '/core/book/book-list' }
             ]
           },
           {

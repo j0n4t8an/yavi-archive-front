@@ -7,47 +7,68 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./notification-list.component.scss'],
 })
 export class NotificationListComponent implements OnInit {
-  data: any[] = [];
+  protected data: any[] = []; 
+  protected filteredData: any[] = []; 
+  protected searchTerm: string = ''; 
 
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    this.loadNotifications();
+    this.loadNotifications(); 
   }
 
+  //Carga las notificaciones desde el servicio.
   loadNotifications(): void {
-    const params = { page: 1, limit: 10 }; // Puedes usar parámetros de paginación si tu backend los soporta
+    const params = { page: 1, limit: 10 };
     this.notificationService.getNotifications(params).subscribe({
       next: (response) => {
-        this.data = response.data || response; // Maneja el formato de respuesta
+        console.log('Notificaciones recibidas:', response);
+        this.data = response.data || response;
+        this.filteredData = [...this.data];
       },
       error: (err) => {
-        console.error('Error fetching notifications:', err);
+        console.error('Error al obtener notificaciones:', err);
       },
     });
   }
-
+  
+  //Elimina una notificación por su ID.@param id ID de la notificación a eliminar
   deleteNotification(id: string): void {
     this.notificationService.deleteNotification(id).subscribe({
       next: () => {
         console.log('Notificación eliminada');
-      // Recarga las notificaciones
+        this.loadNotifications(); // Recarga las notificaciones visibles
       },
       error: (err) => {
-        console.error('Error deleting notification:', err);
+        console.error('Error al eliminar notificación:', err);
       },
     });
   }
 
+  //Envía un mensaje de bienvenida al usuario.@param userId ID del usuario al que se enviará el mensaje de bienvenida
   sendWelcomeMessage(userId: string): void {
     this.notificationService.createWelcomeMessage(userId).subscribe({
       next: () => {
         console.log('Mensaje de bienvenida enviado');
-        this.loadNotifications();
+        this.loadNotifications(); 
       },
       error: (err) => {
-        console.error('Error enviando mensaje de bienvenida:', err);
+        console.error('Error al enviar mensaje de bienvenida:', err);
       },
+    });
+  }
+
+  //Filtra las notificaciones basándose en el término de búsqueda ingresado
+  filterNotifications(): void {
+    const term = this.searchTerm.toLowerCase(); 
+    this.filteredData = this.data.filter((notification) => {
+      return (
+        notification.type_of_notification.toLowerCase().includes(term) || 
+        notification.message.toLowerCase().includes(term) || 
+        new Date(notification.shipping_date)
+          .toLocaleDateString()
+          .toLowerCase()
+      );
     });
   }
 }

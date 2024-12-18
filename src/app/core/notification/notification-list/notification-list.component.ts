@@ -1,56 +1,117 @@
-import { Component, OnInit } from '@angular/core';
-/* import { NotificationService } from '../../../services/notification.service';
- */
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+// PrimeNG imports
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
+import { NotificationService, Notification, NotificationResponse } from '../../../services/notification-http.service';
+import { Subject } from 'rxjs';
+import { takeUntil, catchError, finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-notification-list',
   templateUrl: './notification-list.component.html',
-  styleUrls: ['./notification-list.component.scss']
+  styleUrls: ['./notification-list.component.scss'],
 })
-export class NotificationListComponent implements OnInit {
-  data: any[] = [];
+export class NotificationListComponent implements OnInit, OnDestroy {
+  protected data: Notification[] = [];
+  protected filteredData: Notification[] = [];
+  protected searchTerm = '';
+  protected isLoading = false;
+  
+  private destroy$ = new Subject<void>();
 
-  constructor(/*private notificationService: NotificationService*/) {}
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    /* this.loadNotifications(); */
+    this.loadNotifications();
   }
 
-  // Cargar todas las notificaciones
-  /* loadNotifications(): void {
-    this.notificationService.getNotifications().subscribe({
-      next: (response) => {
-        this.data = response.data; // Asume que el backend devuelve { data: [...] }
-      },
-      error: (err) => {
-        console.error('Error fetching notifications:', err);
-      },
-    });
-  } */
-  editNotification(notification: any): void {
-    // Implementa la lógica para abrir un formulario o un modal de edición
-    console.log('Editar notificación:', notification);
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-  
-  /* deleteNotification(id: string): void {
-    this.notificationService.deleteNotification(id).subscribe({
-      next: () => {
-        console.log('Notificación eliminada');
-        this.loadNotifications(); // Recargar la lista después de eliminar
-      },
-      error: (err) => {
-        console.error('Error deleting notification:', err);
-      },
-    });
+
+  loadNotifications(): void {
+    this.isLoading = true;
+    const params = { page: 1, limit: 10 };
+    
+    this.notificationService.getNotifications(params)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(err => {
+          console.error('Error al obtener notificaciones:', err);
+          this.isLoading = false;
+          return [];
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(response => {
+        const notificationData: Notification[] = 
+          Array.isArray(response) 
+            ? response 
+            : (response as NotificationResponse).data || [];
+        
+        this.data = notificationData;
+        this.filteredData = [...this.data];
+      });
   }
+
+  deleteNotification(id: string): void {
+    this.isLoading = true;
+    this.notificationService.deleteNotification(id)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(err => {
+          console.error('Error al eliminar notificación:', err);
+          this.isLoading = false;
+          return [];
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(() => {
+        this.data = this.data.filter(notification => notification.id !== id);
+        this.filteredData = this.filteredData.filter(notification => notification.id !== id);
+      });
+  }
+
   sendWelcomeMessage(userId: string): void {
-    this.notificationService.createWelcomeMessage(userId).subscribe({
-      next: () => {
-        console.log('Mensaje de bienvenida enviado');
-        this.loadNotifications(); // Recargar la lista
-      },
-      error: (err) => {
-        console.error('Error enviando mensaje de bienvenida:', err);
-      },
+    this.isLoading = true;
+    this.notificationService.createWelcomeMessage(userId)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(err => {
+          console.error('Error al enviar mensaje de bienvenida:', err);
+          this.isLoading = false;
+          return [];
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
+  }
+
+  filterNotifications(): void {
+    const term = this.searchTerm.toLowerCase().trim();
+    
+    this.filteredData = this.data.filter((notification) => {
+      return (
+        (notification.type_of_notification?.toLowerCase().includes(term) || false) ||
+        (notification.message?.toLowerCase().includes(term) || false) ||
+        (new Date(notification.shipping_date)
+          .toLocaleDateString()
+          .toLowerCase()
+          .includes(term) || false)
+      );
     });
-  } */
+  }
 }

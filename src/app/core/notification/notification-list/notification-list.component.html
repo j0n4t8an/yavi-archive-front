@@ -1,28 +1,74 @@
-<p-table [value]="data" [tableStyle]="{'min-width': '60rem'}">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Id</th>
-            <th>User_Id</th>
-            <th>Tipo</th>
-            <th>Mensaje</th>
-            <th>Fecha de Envío</th>
-            <th>Leído</th>
-            <th>Acciones</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-notification>
-        <tr>
-            <td>{{ notification.id }}</td>
-            <td>{{ notification.user_id }}</td>
-            <td>{{ notification.type_of_notification }}</td>
-            <td>{{ notification.message }}</td>
-            <td>{{ notification.shipping_date | date }}</td>
-            <td>{{ notification.read ? 'Sí' : 'No' }}</td>
-            <!-- <td>
-                <button (click)="editNotification(notification)">Editar</button>
-                <button (click)="deleteNotification(notification.id)">Eliminar</button>
-                <button (click)="sendWelcomeMessage('user-id-aqui')">Enviar Mensaje de Bienvenida</button>
-            </td> -->
-        </tr>
-    </ng-template>
-</p-table>
+<app-navbar></app-navbar>
+<div class="home-container">
+  <div class="container">
+    <div class="main">
+      <ng-container *ngIf="!isLoading; else loadingTemplate">
+        <p-table 
+          *ngIf="filteredData.length > 0; else noDataTemplate"
+          class="col-11"
+          [tableStyle]="{ 'min-width': '60rem' }"
+          styleClass="p-datatable-striped"
+          [value]="filteredData"
+          [paginator]="true"
+          [rows]="5"
+        >
+          <ng-template pTemplate="caption">
+            <div class="table-header">
+              <h2 class="table-title">Lista de Notificaciones</h2>
+              <div class="search-bar">
+                <input
+                  type="text"
+                  pInputText
+                  placeholder="Buscar..."
+                  [(ngModel)]="searchTerm"
+                  (ngModelChange)="filterNotifications()"
+                />
+                <i class="pi pi-search search-icon"></i>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Tipo</th>
+              <th>Mensaje</th>
+              <th>Fecha de Envío</th>
+              <th>Acciones</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-notification>
+            <tr>
+              <td>{{ notification.type_of_notification }}</td>
+              <td>{{ notification.message }}</td>
+              <td>{{ notification.shipping_date | date:'short' }}</td>
+              <td>
+                <button 
+                  pButton 
+                  icon="pi pi-trash" 
+                  class="p-button-danger p-button-sm"
+                  (click)="deleteNotification(notification.id)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </ng-container>
+
+      <!-- Plantilla de carga -->
+      <ng-template #loadingTemplate>
+        <p-progressSpinner></p-progressSpinner>
+      </ng-template>
+
+      <!-- Plantilla sin datos -->
+      <ng-template #noDataTemplate>
+        <div class="no-data-message">
+          <p>No hay notificaciones disponibles</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -17,7 +17,7 @@ export class BookFormComponent {
   protected categories: [] = [];
   protected uploadedFiles: any[] = [];
   private fileTmp:any;
-
+private fileData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -101,11 +101,16 @@ export class BookFormComponent {
     }
   }
 
-  sendFile():void{
+  sendFile(): void {
     const body = new FormData();
     body.append('file', this.fileTmp.fileRaw, this.fileTmp.fileName);
     this.bookService.sendPost(body)
-    .subscribe(res => console.log(res))
+      .subscribe(res => {
+        this.fileData = res.data;
+        this.form.patchValue({
+          file_path: this.fileData.fileUrl
+        });
+      });
   }
 
   // Getters para validaciones

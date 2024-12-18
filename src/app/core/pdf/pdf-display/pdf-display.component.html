@@ -1,4 +1,61 @@
-<pdf-viewer [src]="pdfData.fileUrl" [render-text]="true" [original-size]="false"
-  style="width: 900px; height: 650px"></pdf-viewer>
-  
-    <p-button label="Comentarios" [raised]="true" severity="warning" />
+<app-navbar></app-navbar>
+<div class="container">
+  <!-- Contenedor del visor de PDF -->
+  <div class="pdf-viewer-container">
+    <pdf-viewer 
+      [src]="pdfData.fileUrl" 
+      [render-text]="true" 
+      [original-size]="false"
+      style="width: 100%; height: 650px;"
+    ></pdf-viewer>
+  </div>
+
+  <!-- Contenedor del formulario de comentarios -->
+  <div class="comments-container">
+    <h2>Agregar Comentario</h2>
+
+    <form (ngSubmit)="createComment()" [formGroup]="form" class="comment-form">
+      <!-- Área de texto para el comentario -->
+      <div class="p-field">
+        <label for="comment" class="comment-label">Comentario:</label>
+        <textarea
+          pInputTextarea
+          rows="4"
+          id="comment"
+          formControlName="comment"
+          placeholder="Escribe tu comentario aquí"
+          class="comment-textarea"
+        ></textarea>
+      </div>
+
+      <!-- Botón para enviar el comentario -->
+      <div class="button-container">
+        <p-button
+          label="Agregar"
+          icon="pi pi-plus"
+          type="submit"
+          class="submit-button"
+        ></p-button>
+      </div>
+    </form>
+
+    <!-- Lista de comentarios -->
+    <div *ngIf="comments.length > 0" class="comentarios-list">
+      <h3>Comentarios</h3>
+      <ul>
+        <li *ngFor="let comment of comments" class="comment-item">
+          <div class="comment-icon">
+            <i class="pi pi-user"></i>
+          </div>
+          <div class="comment-content">
+            <p class="comment-text">{{ comment }}</p>
+            <span class="comment-time">{{ comment }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="footer-container">
+  <app-footer></app-footer>
+</div>

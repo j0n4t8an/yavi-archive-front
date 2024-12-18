@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommentService } from '../../../services/comments-http.service';
 import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-comments-list',
@@ -9,19 +10,23 @@ import { Router } from '@angular/router';
 })
 export class CommentsListComponent {
 
-  protected comments: any;
-  protected filteredComments: any;
-  protected searchTerm: string = '';
+  protected comments: any[] = [];
+  protected filteredComments: any[] = [];
 
+  protected searchTerm: string = '';
+  decodedToken: any={};
   constructor(private commentService: CommentService, router: Router){
     this.getComment();
-  }
 
+  }
+  
   getComment() {
-    this.commentService.getComments().subscribe(
+    this.getToken();
+    return this.commentService.getCommentById(this.decodedToken.id).subscribe(
       response => {
         console.log(response)
         this.comments = response;
+        console.log(this.filterComment);
         this.filteredComments = response
       },
       error => {
@@ -45,5 +50,13 @@ export class CommentsListComponent {
     this.commentService.deleteComment(id).subscribe(response => {
       this.getComment();
     })
+  }
+
+  getToken() {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+    this.decodedToken = jwt_decode.jwtDecode(token);
+    console.log(this.decodedToken)
+    }
   }
 }

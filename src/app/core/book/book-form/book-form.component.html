@@ -45,16 +45,7 @@
                 <span *ngIf="authorField.errors?.['required']">El autor es obligatorio.</span>
               </small>
             </div>
-
-            <!-- URL -->
-            <div class="p-field">
-              <label for="file_path">URL:</label>
-              <input id="file_path" type="text" pInputText formControlName="file_path" placeholder="Ingrese el URL" required />
-              <small *ngIf="filePathField.invalid && filePathField.touched" class="p-error">
-                <span *ngIf="filePathField.errors?.['required']">El URL es obligatorio.</span>
-              </small>
-            </div>
-
+            
             <!-- Año -->
             <div class="p-field">
               <label for="year_publication">Año:</label>
@@ -100,6 +91,7 @@
   </div>
 
 </div>
+<app-footer></app-footer>
 
 
   

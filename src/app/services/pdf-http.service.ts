@@ -21,7 +21,7 @@ export class PdfService {
 
   // Método para agregar un libro
   addPdf(createPdf: CreatePdfModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/pdf`,createPdf); 
+    return this.http.post(`${this.apiUrl}/pdfs`,createPdf); 
   }
 
   getPdfById(id: string): Observable<any> {

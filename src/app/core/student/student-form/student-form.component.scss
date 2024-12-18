@@ -10,7 +10,8 @@
     position: absolute; /* Posiciona la imagen de fondo */
     top: 0;
     left: 0;
-    z-index: -1; /* Coloca la imagen de fondo detrás del contenido */
+    z-index: -1;
+    margin-top: 70px;  /* Coloca la imagen de fondo detrás del contenido */
   }
   
   .register-form {

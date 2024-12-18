@@ -12,6 +12,7 @@ import { PanelModule } from 'primeng/panel';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
+import { NavbarModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { DropdownModule } from 'primeng/dropdown';
     DividerModule,
     CardModule,
     DropdownModule,
-  ]
+    NavbarModule
+]
 })
 export class StudentModule { }
